@@ -48,7 +48,6 @@ The application uses Back4App as Backend-as-a-Service (BaaS), eliminating the ne
 
 ### Development Platform
 
-* Android Studio
 * VS Code
 
 ---
@@ -126,37 +125,42 @@ User session ends safely.
 
 ### Login Screen
 
-![Login Screen](screenshots/login_screen.png)
+![Login Screen](./screenshots/1.%20Login%20Screen.png)
 
 ---
 
 ### Register Screen
 
-![Register Screen](screenshots/register_screen.png)
+![Register Screen](screenshots/2.%20Register%20Screen.png)
 
 ---
 
 ### Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/3.%20Dashboard%20View.png)
 
 ---
 
 ### Add Task Screen
 
-![Add Task](screenshots/add_task.png)
+![Add Task](screenshots/4.%20Add%20Task.png)
 
 ---
 
 ### Edit Task Screen
 
-![Edit Task](screenshots/edit_task.png)
+![Edit Task](screenshots/6.%20Update%20Task.png)
+
+---
+### Delete Task Screen
+
+![Edit Task](screenshots/5.%20Delete%20Task.png)
 
 ---
 
 ### Back4App Cloud Database
 
-![Back4App Database](screenshots/back4app_database.png)
+![Back4App Database](screenshots/8.Back4App%20Database.png)
 
 ---
 
@@ -242,18 +246,7 @@ Through this project, the following concepts were learned:
 * User authentication systems
 * CRUD operations using Flutter
 * GitHub project management
-* UI/UX design for real-world applications
-
----
-
-## Deliverables Completed
-
-* Flutter CRUD App
-* Back4App Integration
-* GitHub Repository
-* PPT Presentation
-* YouTube Demo Video
-* Screenshots Documentation
+* UI/UX design for cross-applications
 
 ---
 
@@ -283,9 +276,3 @@ Course: Cross Platform Application Development
 Assignment: Flutter CRUD App with Back4App (BaaS)
 
 ---
-
-## Conclusion
-
-Campus Research Workflow Manager is not just a CRUD application — it is a practical academic productivity solution that demonstrates how Flutter and Back4App can be combined to build real-world cloud-connected applications efficiently.
-
-This project showcases both technical implementation and domain-specific innovation, making it a strong professional assignment submission.
