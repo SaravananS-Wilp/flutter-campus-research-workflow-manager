@@ -71,12 +71,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 labelText: "Username",
               ),
             ),
+            const SizedBox(height: 16),
             TextField(
               controller: emailController,
               decoration: const InputDecoration(
                 labelText: "Student Email",
               ),
             ),
+            const SizedBox(height: 16),
             TextField(
               controller: passwordController,
               obscureText: true,
@@ -84,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 labelText: "Password",
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
             ElevatedButton(
               onPressed: isLoading ? null : register,
               child: isLoading

@@ -22,11 +22,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final AuthService authService = AuthService();
   bool isLoading = true;
   List<ParseObject> tasks = [];
+  String? currentUsername;
 
   @override
   void initState() {
     super.initState();
     loadTasks();
+    loadCurrentUser();
+  }
+
+  Future<void> loadCurrentUser() async {
+    final user = await ParseUser.currentUser() as ParseUser?;
+    if (mounted && user != null) {
+      setState(() {
+        currentUsername = user.username;
+      });
+    }
   }
 
   Future<void> loadTasks() async {
@@ -66,17 +77,105 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Future<void> deleteTask(String objectId) async {
-    await taskService.deleteTask(objectId);
-    await loadTasks();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Delete Task',
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              color: const Color(0xFF1E293B),
+            ),
+          ),
+          content: Text(
+            'Are you sure you want to delete this task?',
+            style: GoogleFonts.inter(
+              color: const Color(0xFF64748B),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                'No',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFF64748B),
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context);
+                await taskService.deleteTask(objectId);
+                await loadTasks();
+              },
+              child: Text(
+                'Yes',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<void> logout() async {
-    await authService.logoutUser();
-    if (!mounted) return;
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (_) => const LoginScreen()),
-      (route) => false,
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Logout',
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              color: const Color(0xFF1E293B),
+            ),
+          ),
+          content: Text(
+            'Are you sure you want to logout?',
+            style: GoogleFonts.inter(
+              color: const Color(0xFF64748B),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                'No',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFF64748B),
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context);
+                await authService.logoutUser();
+                if (!mounted) return;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
+                  (route) => false,
+                );
+              },
+              child: Text(
+                'Yes',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -210,7 +309,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Welcome back!',
+                                        'Welcome back, ${currentUsername ?? "User"}!',
                                         style: GoogleFonts.inter(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,

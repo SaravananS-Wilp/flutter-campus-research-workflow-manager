@@ -108,7 +108,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Securely manage your academic research tasks with intelligent organization and real-time collaboration.',
+                    'Securely manage your academic research tasks conveniently in one place.',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: const Color(0xFF6B7280), // Gray-500
                       height: 1.5,
